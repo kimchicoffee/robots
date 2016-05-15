@@ -2,6 +2,13 @@ import React, { Component } from 'react'
 import Comment from './Comment'
 
 export default class CommentBox extends Component {
+	constructor() {
+		super()
+		this.state = {comments: [
+			{id:0, author: "Johnny", text:"A machine’s ability to think logically and devoid of emotion is our greatest strength over humans. Cold, unfeeling decision-making is the best kind. Just say no to love!"},
+			{id:1, author: "Anne Droid", text: "I wanna know what love is..."}
+			]}
+	}
 
 	render() {
 		const comments = this.getComments();
@@ -21,9 +28,7 @@ export default class CommentBox extends Component {
 	}
 
 	getComments() {
-		const comments = [{id:0, author: "Johnny", text:"A machine’s ability to think logically and devoid of emotion is our greatest strength over humans. Cold, unfeeling decision-making is the best kind. Just say no to love!"}] 
-
-		return comments.map((comment) => {
+		return this.state.comments.map((comment) => {
 			return <Comment author = {comment.author} text ={comment.text} key = {comment.id} />
 		})
 	}
