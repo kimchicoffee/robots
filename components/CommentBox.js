@@ -9,6 +9,10 @@ export default class CommentBox extends Component {
 		this.state = {comments: []}
 	}
 
+	componentWillMount() {
+		this.fetchComments();
+	}
+
 	render() {
 		const comments = this.getComments();
 		return (
@@ -51,5 +55,21 @@ export default class CommentBox extends Component {
 		}
 
 		this.setState({ comments: this.state.comments.concat([comment])})
+	}
+
+	fetchComments() {
+		$.ajax({
+			method: 'GET',
+			url: '/api/comments',
+			dataType: 'json',
+			success: (comments) => {
+				this.setState({
+					comments
+				})
+			},
+			error: (xhr, status, err) => {
+				console.error('/api/comments', status, err.toString());
+			}
+		})
 	}
 }

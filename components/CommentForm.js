@@ -7,7 +7,7 @@ export default class CommentForm extends Component {
 				<label>New comment</label>
 				<div className ="comment-form-fields">
 					<input placeholder = "Name:" ref = {(input) => this.author = input} />
-					<textarea placeholder =" Comment:" ref = {(input) => this.text = input }> </textarea>
+					<textarea placeholder="Comment:" ref = {(input) => this.text = input }> </textarea>
 				</div>
 				<div className = "comment-form-actions">
 					<button type ='submit'>

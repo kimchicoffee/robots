@@ -6,6 +6,8 @@ var config = require('./webpack.config')
 var app = new(require('express'))()
 var port = 3000
 
+var comments = require('./comments.json')
+
 var compiler = webpack(config)
 app.use(webpackDevMiddleware(compiler, { noInfo: true, publicPath: config.output.publicPath }))
 app.use(webpackHotMiddleware(compiler))
@@ -14,6 +16,9 @@ app.get("/", function (req, res) {
 	res.sendFile(__dirname + '/index.html')
 })
 
+app.get('/api/comments', function (req, res) {
+	res.status(200).json(comments)
+})
 app.listen(port, function(error) {
 	if(error) {
 		console.error(error)
