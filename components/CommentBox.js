@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
+
 import Comment from './Comment'
+import CommentForm from './CommentForm'
 
 export default class CommentBox extends Component {
 	constructor() {
 		super()
-		this.state = {comments: [
-			{id:0, author: "Johnny", text:"A machine’s ability to think logically and devoid of emotion is our greatest strength over humans. Cold, unfeeling decision-making is the best kind. Just say no to love!"},
-			{id:1, author: "Anne Droid", text: "I wanna know what love is..."}
-			]}
+		this.state = {comments: []}
 	}
 
 	render() {
@@ -17,6 +16,7 @@ export default class CommentBox extends Component {
 				<div className = "cell">
 					<h2> Join The Discussion </h2>
 					<section className = "comment-box">
+						<CommentForm addComment = { this.addComment.bind(this) } />
 						<h3 className = "comment-count">{ this.getCommentsTitle(comments.length) }</h3>
 						<section className = "comment-list">
 					 		{ comments }
@@ -41,5 +41,15 @@ export default class CommentBox extends Component {
 		} else if (comments > 1) {
 			return (`${comments} comments`)
 		}
+	}
+
+	addComment(author, text) {
+		const comment = {
+			id: this.state.comments.length,
+			author: author,
+			text, text
+		}
+
+		this.setState({ comments: this.state.comments.concat([comment])})
 	}
 }
