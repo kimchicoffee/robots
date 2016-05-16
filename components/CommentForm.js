@@ -23,7 +23,7 @@ export default class CommentForm extends Component {
 
 		this.props.addComment(this.author.value, this.text.value);
 
-		this.author = ''
-		this.text = ''
+		this.author.value = ''
+		this.text.value = ''
 	}
 }
