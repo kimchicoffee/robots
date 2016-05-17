@@ -33,7 +33,7 @@ export default class CommentBox extends Component {
 
 	getComments() {
 		return this.state.comments.map((comment) => {
-			return <Comment author = {comment.author} text ={comment.text} key = {comment.id} />
+			return <Comment author = { comment.author } text = { comment.text } key = { comment.id } id = { comment.id } onDelete = { this.deleteComment.bind(this) } />
 		})
 	}
 
@@ -50,11 +50,19 @@ export default class CommentBox extends Component {
 	addComment(author, text) {
 		const comment = {
 			id: this.state.comments.length,
-			author: author,
-			text, text
+			author,
+			text
 		}
 
 		this.setState({ comments: this.state.comments.concat([comment])})
+	}
+
+	deleteComment(commentId) {
+		const comments = this.state.comments.filter(
+			(comment) => comment.id !== commentId
+			)
+
+		this.setState({ comments })
 	}
 
 	fetchComments() {

@@ -15,10 +15,16 @@ export default class Comment extends Component {
 				<p className = 'comment-header'> {this.props.author} </p>
 				<p className = 'comment-body'> { commentText } </p>
 				<div className = "comment-actions">
-					<a href="#" onClick={ this.toggleAbuse.bind(this) }> { reportLabel }</a>
+					<a href = '#' onClick = { this.handleDelete.bind(this) }> Delete Comment</a>
+					<a href = '#' onClick = { this.toggleAbuse.bind(this) }> { reportLabel }</a>
 				</div>
 			</article>
 			)
+	}
+
+	handleDelete(event) {
+		event.preventDefault()
+		this.props.onDelete(this.props.id);
 	}
 
 	toggleAbuse(event) {
