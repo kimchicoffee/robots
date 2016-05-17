@@ -24,7 +24,9 @@ export default class Comment extends Component {
 
 	handleDelete(event) {
 		event.preventDefault()
-		this.props.onDelete(this.props.id);
+		if(confirm('Are you sure?')) {
+			this.props.onDelete(this.props.id);
+		}
 	}
 
 	toggleAbuse(event) {
